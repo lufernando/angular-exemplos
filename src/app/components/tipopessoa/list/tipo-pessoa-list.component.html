@@ -1,0 +1,35 @@
+<table>
+  <thead>
+    <tr>
+      <td>CPF</td>
+      <td>Nome</td>
+      <td>E-mail</td>
+      <td>CEP</td>
+      <td>Logradouro</td>
+      <td>Numero</td>
+      <td>Complemento</td>
+      <td>Bairro</td>
+      <td>Cidade</td>
+      <td>UF</td>
+      <td>Ações</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pessoa of pessoas">
+      <td>{{pessoa.cpf}}</td>
+      <td>{{pessoa.nome}}</td>
+      <td>{{pessoa.email}}</td>
+      <td>{{pessoa.enderecoDTO.cep}}</td>
+      <td>{{pessoa.enderecoDTO.logradouro}}</td>
+      <td>{{pessoa.enderecoDTO.numero}}</td>
+      <td>{{pessoa.enderecoDTO.complemento}}</td>
+      <td>{{pessoa.enderecoDTO.bairro}}</td>
+      <td>{{pessoa.enderecoDTO.cidade}}</td>
+      <td>{{pessoa.enderecoDTO.uf}}</td>
+      <td>
+        <button (click)="excluir(pessoa.id)">Excluir</button>
+        <button (click)="alterar()">Alterar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

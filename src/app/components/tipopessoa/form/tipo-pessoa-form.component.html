@@ -1,0 +1,30 @@
+<fieldset>
+  <legend>Cadastro de Pessoa</legend>
+  <div>
+    Nome
+    <input type="text" [(ngModel)]="pessoa.nome" />
+  </div>
+
+  <div>
+    CPF
+    <input type="text" [(ngModel)]="pessoa.cpf" />
+  </div>
+
+  <div>
+    E-mail
+    <input type="text" [(ngModel)]="pessoa.email" />
+  </div>
+
+  <div>
+    CEP
+    <input type="text" [(ngModel)]="pessoa.enderecoDTO.cep" />
+  </div>
+
+  <div>
+    <button (click)="inserir()">Salvar</button>
+  </div>
+
+
+</fieldset>
+
+  
