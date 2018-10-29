@@ -26,9 +26,9 @@
       <td>{{pessoa.enderecoDTO.bairro}}</td>
       <td>{{pessoa.enderecoDTO.cidade}}</td>
       <td>{{pessoa.enderecoDTO.uf}}</td>
-      <td>
-        <button (click)="excluir(pessoa.id)">Excluir</button>
-        <button (click)="alterar()">Alterar</button>
+
+      <td><button (click)="deletarPessoa(pessoa.cpf)">Excluir</button></td>
+      <td><button [routerLink]="[ '/pessoa/', pessoa.cpf]">Alterar</button></td>
       </td>
     </tr>
   </tbody>

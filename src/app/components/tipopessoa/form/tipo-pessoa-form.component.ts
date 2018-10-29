@@ -11,18 +11,30 @@ import { Router } from '@angular/router';
 export class TipoPessoaFormComponent implements OnInit {
 
   pessoa: Pessoa;
-  pessoas: Array<Pessoa>
+  cpfAlterar: string;
 
   constructor(private service: PessoaService, private router: Router) { }
 
   ngOnInit() {
-    this.pessoa = new Pessoa;
-    this.pessoas = new Array();
+    this.pessoa = new Pessoa();
+    if (this.cpfAlterar){
+      this.buscarCpf();
+    }
+  }
+  buscarCpf() {
+    this.service.buscarPorCpf(this.cpfAlterar).subscribe(pessoa => this.pessoa = pessoa);
   }
 
   inserir():void {
-    this.service.inserirBanco(this.pessoa).subscribe();
-    this.router.navigateByUrl('tipo-pessoa/listar');
+    if(this.pessoa.cpf){
+      this.service.alterarPessoa(this.pessoa).subscribe(() => {this.pessoa = new Pessoa()
+      this.router.navigateByUrl('tipo-pessoa/listar', {skipLocationChange: false});
+      });
+    }else {
+    this.service.inserirBanco(this.pessoa).subscribe(() => {this.pessoa = new Pessoa()
+    this.router.navigateByUrl('tipo-pessoa/listar', {skipLocationChange: false});
+    });
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pessoa } from '../../model/pessoa.model';
 import { PessoaService } from '../../service/pessoa.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tipo-pessoa-list',
@@ -12,13 +12,24 @@ export class TipoPessoaListComponent implements OnInit {
 
   pessoas: Array<Pessoa>;
   pessoa: Pessoa;
+  
 
-  constructor(private service: PessoaService) { }
+  constructor(
+    private service: PessoaService, 
+    private route: ActivatedRoute,
+    private router: Router) { }
   
   ngOnInit() {
     this.pessoa = new Pessoa;
-    this.pessoas = new Array();
+    this.getLista();
+  }
+
+  getLista(){
     this.service.buscarTodos().subscribe(pessoasRecebidas => this.pessoas = pessoasRecebidas);
+  }
+
+  deletarPessoa(cpf: string){
+    this.service.deletarBanco(cpf).subscribe(() => this.getLista);
   }
 
 }
